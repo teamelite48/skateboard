@@ -1,0 +1,44 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 1.9080518161036326,
+      "y": 7.124496534707355
+    },
+    "rotation": 0
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "sequential",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "Intake On"
+                }
+              },
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Pick up and shoot"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Intake Off"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "folder": null,
+  "choreoAuto": false
+}
