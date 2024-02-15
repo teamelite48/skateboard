@@ -35,6 +35,17 @@ public class RobotContainer {
   }
 
   private void bindPilotControls() {
+   
+    pilot.cross
+      .onTrue(new InstantCommand(() -> vision.enableLed()))
+      .whileTrue(new DriveCommand(
+        () -> new Translation2d(0.0, 0.0),
+        () -> new Translation2d(vision.getXError(), 0.0),
+        () -> speedChooser.getSelected()
+      ))
+      .onFalse(new InstantCommand(() -> vision.disableLed()));
+
+
     pilot.ps
       .onTrue(new InstantCommand(() -> drive.zeroGyro())); 
   }
