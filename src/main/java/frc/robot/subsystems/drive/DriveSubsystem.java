@@ -127,9 +127,9 @@ public class DriveSubsystem extends SubsystemBase{
 
         double speedModifier = maxSpeed;
 
-        if (gear == Gear.Low) {
-            speedModifier = LOW_GEAR_SPEED;
-        }
+        // if (gear == Gear.Low) {
+        //     speedModifier = LOW_GEAR_SPEED;
+        // }
 
         var chassisSpeeds = calculateChassisSpeeds(x * speedModifier, y * speedModifier, rotation * speedModifier);
         

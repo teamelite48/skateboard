@@ -29,25 +29,14 @@ public class RobotContainer {
   private final SendableChooser<Double> speedChooser = new SendableChooser<>();
   
   public RobotContainer() {  
-    drive.setDefaultCommand(new DriveCommand(() -> pilot.getLeftAxes(), () -> pilot.getRightAxes(), () -> speedChooser.getValue()));
+    drive.setDefaultCommand(new DriveCommand(() -> pilot.getLeftAxes(), () -> pilot.getRightAxes(), () -> speedChooser.getSelected()));
     bindPilotControls();
     initSpeedChooser();
   }
 
   private void bindPilotControls() {
-    
-    pilot.cross
-      .onTrue(new InstantCommand(() -> vision.enableLed()))
-      .whileTrue(new DriveCommand(
-        () -> new Translation2d(0.0, 0.0),
-        () -> new Translation2d(vision.getXError(), 0.0)
-      ))
-      .onFalse(new InstantCommand(() -> vision.disableLed()));
-
     pilot.ps
       .onTrue(new InstantCommand(() -> drive.zeroGyro())); 
-
-
   }
 
   public Command getAutonomousCommand() {
