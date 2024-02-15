@@ -123,9 +123,9 @@ public class DriveSubsystem extends SubsystemBase{
         updateOdometry();
     }
 
-    public void manualDrive(double x, double y, double rotation) {
+    public void manualDrive(double x, double y, double rotation, double maxSpeed) {
 
-        double speedModifier = MAX_OUTPUT;
+        double speedModifier = maxSpeed;
 
         if (gear == Gear.Low) {
             speedModifier = LOW_GEAR_SPEED;

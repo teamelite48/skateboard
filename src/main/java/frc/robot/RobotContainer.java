@@ -25,10 +25,13 @@ public class RobotContainer {
   DualShock4Controller pilot = new DualShock4Controller(0);
   public static DriveSubsystem drive = new DriveSubsystem();
   public static VisionSubsystem vision = new VisionSubsystem();
+
+  private final SendableChooser<Double> speedChooser = new SendableChooser<>();
   
   public RobotContainer() {  
-    drive.setDefaultCommand(new DriveCommand(() -> pilot.getLeftAxes(), () -> pilot.getRightAxes()));
+    drive.setDefaultCommand(new DriveCommand(() -> pilot.getLeftAxes(), () -> pilot.getRightAxes(), () -> speedChooser.getValue()));
     bindPilotControls();
+    initSpeedChooser();
   }
 
   private void bindPilotControls() {
@@ -61,5 +64,16 @@ public class RobotContainer {
     SmartDashboard.putData("Auto Chooser", autoChooser);
 
     return autoChooser;
+  }
+
+  public void initSpeedChooser() {
+
+    speedChooser.setDefaultOption("25%", 0.25);
+
+    speedChooser.addOption("50%", .5);
+    speedChooser.addOption("75%", .75);
+    speedChooser.addOption("100%", 1.0);
+
+    SmartDashboard.putData("Robot Speed", speedChooser);
   }
 }

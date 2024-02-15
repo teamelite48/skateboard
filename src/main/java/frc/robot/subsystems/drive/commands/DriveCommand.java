@@ -16,13 +16,15 @@ public class DriveCommand extends CommandBase {
   DriveSubsystem driveSubsystem = RobotContainer.drive;
   Supplier<Translation2d> translationSupplier;
   Supplier<Translation2d> rotationSupplier;
+  Supplier<Double> maxSpeed;
 
-  public DriveCommand(Supplier<Translation2d> translationSupplier, Supplier<Translation2d> rotationSupplier) {
+  public DriveCommand(Supplier<Translation2d> translationSupplier, Supplier<Translation2d> rotationSupplier, Supplier<Double> maxSpeed) {
 
     addRequirements(driveSubsystem);
 
     this.translationSupplier = translationSupplier;
     this.rotationSupplier = rotationSupplier;
+    this.maxSpeed = maxSpeed;
   }
 
 
@@ -38,8 +40,10 @@ public class DriveCommand extends CommandBase {
     driveSubsystem.manualDrive(
       translation.getX(),
       translation.getY(),
-      rotation.getX()
+      rotation.getX(),
+      maxSpeed.get()
     );
+
   }
 
 
